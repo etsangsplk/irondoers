@@ -3,6 +3,7 @@ var contract = require("truffle-contract");
 var IronDoers = contract(require("../build/contracts/IronDoers.json"));
 var IronPromise = contract(require("../build/contracts/IronPromise.json"));
 require("bootstrap");
+
 var account;
 
 window.Dapp = {
@@ -24,9 +25,9 @@ window.Dapp = {
   },
 
   setDoerCount: function() {
-    IronDoers.deployed().then(function (instance) {
+    IronDoers.deployed().then(function(instance) {
       return instance.getDoerCount.call();
-    }).then(function (value) {
+    }).then(function(value) {
       var element = document.getElementById("doer-count");
       element.innerHTML = value.valueOf();
     }).catch(function(err) {
@@ -35,7 +36,7 @@ window.Dapp = {
   },
 
   setFulfillmentCount: function() {
-    IronPromise.deployed().then(function (instance) {
+    IronPromise.deployed().then(function(instance) {
       return instance.getFulfillmentCount.call();
     }).then(function(value) {
       var element = document.getElementById("fulfillment-count");
@@ -80,16 +81,17 @@ window.addEventListener("load", function() {
   } else {
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
   }
-  try {
-    var accounts = web3.eth.accounts;
-  } catch(err) {
-    Dapp.throwError("Use a browser that can browse the decentralized web!", err);
-  }
-  if (accounts.length == 0) {
-    Dapp.throwError("Connect an account!");
-  }
-  account = accounts[0];
   IronDoers.setProvider(web3.currentProvider);
   IronPromise.setProvider(web3.currentProvider);
-  Dapp.start();
+
+  web3.eth.getAccounts(function(err, accounts) {
+    if (err) {
+      Dapp.throwError("Your browser can't see the decentralized web!", err);
+    }
+    if (accounts.length == 0) {
+      Dapp.throwError("Connect an account!");
+    }
+    account = accounts[0];
+    Dapp.start();
+  });
 });
