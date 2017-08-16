@@ -10,12 +10,13 @@
   "author": "Dick Olsson",
   "license": "GPL-3.0",
   "devDependencies": {
-    "web3": "~0.18",
-    "json-loader": "~0.5",
-    "truffle-contract": "~1",
-    "eth-ens-namehash": "~1",
-    "webpack": "~2",
-    "webpack-dev-server": "~2",
-    "bootstrap": "~3"
+    "web3": "^0.20.0",
+    "json-loader": "^0.5.7",
+    "truffle-contract": "^2.0.5",
+    "eth-ens-namehash": "^2.0.0",
+    "webpack": "^3.5.4",
+    "webpack-dev-server": "^2.7.1",
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7"
   }
 }
