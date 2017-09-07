@@ -1,6 +1,6 @@
 .idea
 build
-chain
+chains
 package-lock.json
 node_modules
 www/*.js

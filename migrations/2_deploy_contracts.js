@@ -5,9 +5,9 @@ const IronToken = artifacts.require("./IronToken.sol");
 module.exports = function(deployer, network, accounts) {
   deployer.deploy(IronDoers)
     .then(function() {
-      deployer.deploy(IronPromise, IronDoers.address);
+      return deployer.deploy(IronPromise, IronDoers.address);
     })
     .then(function() {
-      deployer.deploy(IronToken);
+      return deployer.deploy(IronToken);
     });
 };

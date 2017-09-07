@@ -1,3 +1,14 @@
+function namehash(name) {
+  var node = '0x0000000000000000000000000000000000000000000000000000000000000000';
+  if (name !== '') {
+    var labels = name.split(".");
+    for(var i = labels.length - 1; i >= 0; i--) {
+      node = web3.sha3(node + web3.sha3(labels[i]).slice(2), {encoding: 'hex'});
+    }
+  }
+  return node.toString();
+}
+
 var ENS = web3.eth.contract([
   {
     "constant": true,
@@ -592,14 +603,3 @@ var PublicResolver = web3.eth.contract([
     "type": "event"
   }
 ]);
-
-function namehash(name) {
-  var node = '0x0000000000000000000000000000000000000000000000000000000000000000';
-  if (name != '') {
-    var labels = name.split(".");
-    for(var i = labels.length - 1; i >= 0; i--) {
-      node = web3.sha3(node + web3.sha3(labels[i]).slice(2), {encoding: 'hex'});
-    }
-  }
-  return node.toString();
-}
