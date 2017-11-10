@@ -49,10 +49,7 @@ For development:
 
 ```bash
 $ geth --datadir ./chains/dev/ init ./chains/dev.json
-$ geth \
-  --datadir ./chains/dev/ \
-  --rpc \
-  --rpcapi="db,eth,net,web3,personal"
+$ geth --datadir ./chains/dev/ --rpc --rpcapi="db,eth,net,web3,personal"
 ```
 
 For testing on Ropsten:
@@ -72,6 +69,12 @@ Before we can migrate our contracts to the blockchain and start using it all, th
 1. Create the first user account
 2. Unlock said account
 3. Start mining Ether
+
+Make sure you're attached to the geth console:
+
+```bash
+$ geth attach ipc:./chains/dev/geth.ipc
+```
 
 While inside the geth console, create a new account and give it a password by running:
 

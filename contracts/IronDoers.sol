@@ -9,12 +9,12 @@ contract IronDoers is IronDoersAbstract {
 	uint public doerCount;
 
 	modifier onlyTrustee {
-		if (msg.sender != trustee) throw;
+		if (msg.sender != trustee) revert();
 		_;
 	}
 
 	modifier onlyDoers {
-		if (!doers[msg.sender]) throw;
+		if (!doers[msg.sender]) revert();
 		_;
 	}
 
